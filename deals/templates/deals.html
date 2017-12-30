@@ -36,6 +36,13 @@
 #left-td{
     width:25%;
 }
+#sorry-div{
+    width:50%;
+    border: 3px solid #ddd;
+    padding: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
 </style>
 
      &emsp;&emsp;&emsp;<h1> Deals</h1> <a href="/" class="grp-state-focus addlink">Back</a></br>
@@ -44,13 +51,14 @@
     <table id="customers">
 
         <tr><th>User Info:</th><th></th></tr>
-
-            {% for i, l in deal.userInfo.items %}
         <tr>
-            <td id="left-td"><strong>{{ i }}: &emsp;</strong></td>
-            <td>{{ l }}</td>
+            <td id="left-td"><strong>Persona Type:</strong></td>
+            <td>{{deal.userInfo.persona.personaType}}</td>
         </tr>
-            {% endfor %}
+        <tr>
+            <td id="left-td"><strong>User ID:</strong></td>
+            <td>{{deal.userInfo.userId}}</td>
+        </tr>
     </table>
 </div>
 </br></br>
@@ -104,7 +112,7 @@
 
 {% else %}
 </br></br>
-<div style="width:50%;border: 3px solid #ddd;padding: 12px;padding-top: 12px;padding-bottom: 12px;">
+<div id="sorry-div">
 </br>
 <h3> &emsp;Sorry! No results have been found! </h3>
 <h3> &emsp;Try using different search parameters. </h3>

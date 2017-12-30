@@ -3,7 +3,7 @@ from collections import OrderedDict
 import requests
 from .forms import SubmitDeal
 
-def save_deal(request):
+def find_deal(request):
     if request.method == "POST":
         form = SubmitDeal(request.POST)
 
