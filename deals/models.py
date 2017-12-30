@@ -1,15 +1,15 @@
 from django.db import models
-
+from django.core.validators import MinValueValidator
 # Create your models here.
 
 class Deals(models.Model):
-    regionIds = models.IntegerField(blank=True, null=True)
+    regionIds = models.PositiveIntegerField(blank=True, null=True)
     minTripStartDate = models.DateField(blank=True, null=True)
     maxTripStartDate = models.DateField(blank=True, null=True)
-    lengthOfStay = models.IntegerField(blank=True, null=True)
-    maxStarRating = models.IntegerField(blank=True, null=True)
-    minStarRating = models.IntegerField(blank=True, null=True)
-    maxTotalRate = models.IntegerField(blank=True, null=True)
-    minTotalRate = models.IntegerField(blank=True, null=True)
-    maxGuestRating = models.IntegerField(blank=True, null=True)
-    minGuestRating = models.IntegerField(blank=True, null=True)
+    lengthOfStay = models.PositiveIntegerField(blank=True, null=True)
+    maxStarRating = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1,validators=[MinValueValidator(0.0)])
+    minStarRating = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1,validators=[MinValueValidator(0.0)])
+    maxTotalRate = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1,validators=[MinValueValidator(0.0)])
+    minTotalRate = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1,validators=[MinValueValidator(0.0)])
+    maxGuestRating = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1,validators=[MinValueValidator(0.0)])
+    minGuestRating = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1,validators=[MinValueValidator(0.0)])

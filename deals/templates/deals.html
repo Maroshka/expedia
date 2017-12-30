@@ -1,30 +1,115 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1> Deals</h1>
-    <ul>
-        <h3>User Info:</h3>
-        {% for i, l in deal.userInfo.items %}
-        <li><strong>{{ i }}: &emsp;</strong><span>{{ l }}</span></li>
-        {% endfor %}
-        </br></br></br>
-        <h3> Offer Info:</h3>
+<style>
+
+#inside {
+    width:75%;
+    border: 3px solid #ddd;
+    padding: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;
+}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+#left-td{
+    width:25%;
+}
+</style>
+
+     &emsp;&emsp;&emsp;<h1> Deals</h1> <a href="/" class="grp-state-focus addlink">Back</a></br>
+
+<div id="inside">
+    <table id="customers">
+
+        <tr><th>User Info:</th><th></th></tr>
+
+            {% for i, l in deal.userInfo.items %}
+        <tr>
+            <td id="left-td"><strong>{{ i }}: &emsp;</strong></td>
+            <td>{{ l }}</td>
+        </tr>
+            {% endfor %}
+    </table>
+</div>
+</br></br>
+
+<div id="inside">
+    <table id="customers">
+        <tr><th>Offer Info: </th><th></th></tr>
         {% for i, l in deal.offerInfo.items %}
-        <li><strong>{{ i }}: &emsp;</strong><span>{{ l }}</span></li>
+            <tr>
+                <td id="left-td"><strong>{{ i }}: &emsp;</strong></td>
+                <td>{{ l }}</td>
+            </tr>
         {% endfor %}
-    </br></br>
-        <h3>Offers Details ({{ deal.offers.Hotel|length }} offers):</h3>
-        {% for offer in deal.offers.Hotel %}
-            </br></br>
-        <h4>Offer #{{ forloop.counter0 }}:</h4>
-           {% for key, val in offer.items %}
-        <li><strong>{{ key }}</strong></li>
-            {% for k, v in val.items %}
-            <li><span>{{ k }}: &emsp;</span><span>{{ v }}</span></li>
+    </table>
+</div>
+{% if deal.offers.Hotel|length != 0 %}
+<h3>Offers Details ({{ deal.offers.Hotel|length }} offers):</h3>
+{% for offer in deal.offers.Hotel %}
+
+</br>
+<div id="inside">
+    <h4>Offer #{{ forloop.counter }}:</h4>
+    {% for key, val in offer.items %}
+    <table id="customers">
+            <tr><th><strong>{{ key }}</strong></th><th></th></tr>
+        {% for k, v in val.items %}
+        {% if k == "hotelImageUrl" %}
+            <tr>
+                <td id="left-td"><span> Hotel Image: &emsp;</span></td>
+                <td><a href="{{ v }}"><img src="{{ v }}" /></a></td>
+            </tr>
+        {% elif "Url" in k %}
+            <tr>
+                <td id="left-td"><span>{{ k }}: &emsp;</span></td>
+                <td><a href="{{ v }}" > Link </a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td id="left-td"><span>{{ k }}: &emsp;</span></td>
+                <td><span>{{ v }}</span></td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
 
         {% endfor %}
-        </br></br>
-        {% endfor %}
-        {% endfor %}
-    </ul>
+
+</div>
+</br>
+{% endfor %}
+
+{% else %}
+</br></br>
+<div style="width:50%;border: 3px solid #ddd;padding: 12px;padding-top: 12px;padding-bottom: 12px;">
+</br>
+<h3> &emsp;Sorry! No results have been found! </h3>
+<h3> &emsp;Try using different search parameters. </h3>
+    <strong> &emsp;<a href="/"> <- Back </a> </strong>
+</br>
+</div>
+{% endif %}
 {% endblock %}
