@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Deals</h1>
+    <ul>
+        <h3>User Info:</h3>
+        {% for i, l in deal.userInfo.items %}
+        <li><strong>{{ i }}: &emsp;</strong><span>{{ l }}</span></li>
+        {% endfor %}
+        </br></br></br>
+        <h3> Offer Info:</h3>
+        {% for i, l in deal.offerInfo.items %}
+        <li><strong>{{ i }}: &emsp;</strong><span>{{ l }}</span></li>
+        {% endfor %}
+    </br></br>
+        <h3>Offers Details ({{ deal.offers.Hotel|length }} offers):</h3>
+        {% for offer in deal.offers.Hotel %}
+            </br></br>
+        <h4>Offer #{{ forloop.counter0 }}:</h4>
+           {% for key, val in offer.items %}
+        <li><strong>{{ key }}</strong></li>
+            {% for k, v in val.items %}
+            <li><span>{{ k }}: &emsp;</span><span>{{ v }}</span></li>
+
+        {% endfor %}
+        </br></br>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+{% endblock %}

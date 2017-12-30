@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <ul>
+        <li>{{ deal.title }}</li>
+        <li>{{ deal.description }}</li>
+    </ul>
+    <img src="{{ embed.thumbnail_url }}" />
+
+{% endblock %}
