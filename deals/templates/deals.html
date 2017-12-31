@@ -10,23 +10,23 @@
     padding-top: 8px;
     padding-bottom: 8px;
 }
-#customers {
+#offers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#customers td, #customers th {
+#offers td, #customers th {
     border: 1px solid #ddd;
     padding: 4px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;
+#offers tr:nth-child(even){background-color: #f2f2f2;
 }
 
-#customers tr:hover {background-color: #ddd;}
+#offers tr:hover {background-color: #ddd;}
 
-#customers th {
+#offers th {
     padding-top: 8px;
     padding-bottom: 8px;
     text-align: left;
@@ -48,7 +48,7 @@
      &emsp;&emsp;&emsp;<h1> Deals</h1> <a href="/" class="grp-state-focus addlink">Back</a></br>
 
 <div id="inside">
-    <table id="customers">
+    <table id="offers">
 
         <tr><th>User Info:</th><th></th></tr>
         <tr>
@@ -64,7 +64,7 @@
 </br></br>
 
 <div id="inside">
-    <table id="customers">
+    <table id="offers">
         <tr><th>Offer Info: </th><th></th></tr>
         {% for i, l in deal.offerInfo.items %}
             <tr>
@@ -82,7 +82,7 @@
 <div id="inside">
     <h4>Offer #{{ forloop.counter }}:</h4>
     {% for key, val in offer.items %}
-    <table id="customers">
+    <table id="offers">
             <tr><th><strong>{{ key }}</strong></th><th></th></tr>
         {% for k, v in val.items %}
         {% if k == "hotelImageUrl" %}
